@@ -2,8 +2,10 @@
   "compilerOptions": {
     "paths": {
       "*": ["./*"],
-      "@pages": ["./src/pages/index.ts"],
-      "@components": ["./src/components/index.ts"]
+      "@Router": ["./src/Router/index.ts"],
+      "@Redux": ["./src/Redux/index.ts"],
+      "@Pages": ["./src/Pages/index.ts"],
+      "@Components": ["./src/Components/index.ts"]
     }
   }
 }

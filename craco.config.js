@@ -18,8 +18,10 @@ const throwError = (message) =>
 module.exports = {
   webpack: {
     alias: {
-      '@pages': path.resolve(__dirname, './src/pages'),
-      '@components': path.resolve(__dirname, './src/components'),
+      '@Router': path.resolve(__dirname, './src/Router'),
+      '@Redux': path.resolve(__dirname, './src/Redux'),
+      '@Pages': path.resolve(__dirname, './src/Pages'),
+      '@Components': path.resolve(__dirname, './src/Components'),
     },
     configure: (webpackConfig, { paths }) => {
       const { hasFoundAny, matches } = getLoaders(

@@ -20,7 +20,6 @@
   },
   "rules": {
     "no-use-before-define": "off",
-    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -31,6 +30,11 @@
     ],
     "comma-dangle": "off",
     "import/prefer-default-export": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "no-param-reassign": "off",
+    "no-unused-vars": "off",
+    "no-unreachable": "off",
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "react/jsx-props-no-spreading": "off"
   }
 }

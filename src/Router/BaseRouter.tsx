@@ -4,9 +4,11 @@ import { LoginPage } from '@Pages';
 import { LogOnLayout } from '@Components';
 import { PrivateRoute } from './PrivateRoute';
 import { mainRoutes } from './mainRoutes';
+import { AccountRedirect } from './AccountRedirect';
 
 export const BaseRouter = () => (
   <Router>
+    <AccountRedirect />
     <Switch>
       <Route exact path="/login" component={LogOnLayout(LoginPage)} />
 

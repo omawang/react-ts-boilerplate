@@ -10,5 +10,6 @@ export const PrivateRoute = (props: RouteProps) => {
   const { authToken } = useAppSelector((state) => state.account);
 
   if (!authToken) return <Redirect to="/login" />;
+
   return <Route {...props} />;
 };

@@ -28,6 +28,9 @@ export const LoginForm = () => {
     onSubmit: async (values, { setErrors }) => {
       const result = await dispatch(loginThunk(values));
       if (result.type === 'account/login/rejected') setErrors(formatAPIErrors(loginErrors));
+      if (result.type === 'account/login/fulfilled') {
+        localStorage.setItem('token', result.payload.data.accessToken);
+      }
     },
   });
 

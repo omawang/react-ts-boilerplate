@@ -15,6 +15,9 @@ const accountSlice = createSlice({
       state.messageState = 'success';
       state.message = 'Successfully Logged In!';
     },
+    setAuthToken: (state, action) => {
+      state.authToken = action.payload;
+    },
     logout: (state, _) => {
       state.authToken = null;
       state.id = '';
@@ -24,11 +27,11 @@ const accountSlice = createSlice({
       state.phone = '';
       state.messageState = 'success';
       state.message = 'Successfully Logged Out!';
-    }
+    },
   },
-  extraReducers
+  extraReducers,
 });
 
-export const { forceLogin, logout } = accountSlice.actions;
+export const { forceLogin, setAuthToken, logout } = accountSlice.actions;
 
 export const accountReducer = accountSlice.reducer;

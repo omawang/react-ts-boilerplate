@@ -7,20 +7,15 @@ import { LoginPageStyles } from './Styles';
 
 export const LoginPage = () => {
   const history = useHistory();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const classes = LoginPageStyles();
   const { authToken } = useAppSelector((state) => state.account);
 
-  const fetchProfile = useCallback(async () => {
-    const result = await dispatch(fetchProfileThunk(authToken as string));
-    if (result.type === 'account/fetchProfile/fulfilled') history.replace('/dashboard');
-  }, [authToken]);
-
   useEffect(() => {
     if (authToken) {
-      fetchProfile();
+      history.replace('/dashboard');
     }
-  }, [authToken]);
+  }, [authToken, history]);
 
   return (
     <div className={classes.root}>

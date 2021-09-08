@@ -18,6 +18,7 @@ const throwError = (message) =>
 module.exports = {
   webpack: {
     alias: {
+      '@Theme': path.resolve(__dirname, './src/Theme'),
       '@Router': path.resolve(__dirname, './src/Router'),
       '@Redux': path.resolve(__dirname, './src/Redux'),
       '@Pages': path.resolve(__dirname, './src/Pages'),

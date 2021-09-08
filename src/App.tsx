@@ -1,13 +1,14 @@
 import React from 'react';
-
 import { Provider } from 'react-redux';
-import { DashboardPage, LoginPage } from '@Pages';
 import { store } from '@Redux';
 import { BaseRouter } from '@Router';
+import { ThemeConfig } from '@Theme';
 
 const App = () => (
   <Provider store={store}>
-    <BaseRouter />
+    <ThemeConfig>
+      <BaseRouter />
+    </ThemeConfig>
   </Provider>
 );
 

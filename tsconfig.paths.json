@@ -2,6 +2,7 @@
   "compilerOptions": {
     "paths": {
       "*": ["./*"],
+      "@Theme": ["./src/Theme/index.ts"],
       "@Router": ["./src/Router/index.ts"],
       "@Redux": ["./src/Redux/index.ts"],
       "@Pages": ["./src/Pages/index.ts"],

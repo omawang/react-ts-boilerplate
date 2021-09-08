@@ -4,6 +4,8 @@
       "*": ["./*"],
       "@Theme": ["./src/Theme/index.ts"],
       "@Router": ["./src/Router/index.ts"],
+      "@API": ["./src/API/index.ts"],
+      "@Functions": ["./src/Functions/index.ts"],
       "@Redux": ["./src/Redux/index.ts"],
       "@Pages": ["./src/Pages/index.ts"],
       "@Components": ["./src/Components/index.ts"]

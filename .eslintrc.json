@@ -34,6 +34,7 @@
     "no-param-reassign": "off",
     "no-unused-vars": "off",
     "no-unreachable": "off",
+    "no-plusplus": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     "react/jsx-props-no-spreading": "off"

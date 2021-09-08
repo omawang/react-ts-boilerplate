@@ -2,9 +2,7 @@ import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
 import { AccountInitialState } from '../InititalState';
 import { loginThunk } from '../Thunks';
 
-export const loginCases = (
-  builder: ActionReducerMapBuilder<AccountInitialState>
-) => {
+export const loginCases = (builder: ActionReducerMapBuilder<AccountInitialState>) => {
   builder.addCase(loginThunk.pending, (state, _) => {
     state.isSubmittingLogin = true;
     state.messageState = 'pending';
@@ -13,10 +11,11 @@ export const loginCases = (
   });
 
   builder.addCase(loginThunk.fulfilled, (state, action) => {
-    const { token } = action.payload;
+    const { data } = action.payload;
 
     state.isSubmittingLogin = false;
-    state.authToken = token;
+    state.authToken = data.accessToken;
+    state.refreshToken = data.refreshToken;
     state.messageState = 'success';
     state.message = 'Successfully Logged In!';
   });
@@ -27,6 +26,6 @@ export const loginCases = (
     state.isSubmittingLogin = false;
     state.messageState = 'error';
     state.message = message;
-    state.errors = errors;
+    state.errors = errors.content;
   });
 };

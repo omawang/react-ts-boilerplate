@@ -1,29 +1,33 @@
 import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { Form, FormikProvider, useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Button, IconButton, InputAdornment, Link, TextField } from '@material-ui/core';
+import { Button, IconButton, InputAdornment } from '@material-ui/core';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { InputText } from '@Components';
+import { loginThunk, useAppDispatch, useAppSelector } from '@Redux';
+import { formatAPIErrors } from '@Functions';
 import { LoginFormStyles } from './Styles';
 
 export const LoginForm = () => {
+  const dispatch = useAppDispatch();
+  const { errors: loginErrors, authToken } = useAppSelector((state) => state.account);
   const classes = LoginFormStyles();
   const [showPassword, setShowPassword] = useState(false);
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
+    username: Yup.string().required('Username is required'),
     password: Yup.string().required('Password is required'),
   });
 
   const formik = useFormik({
     initialValues: {
-      email: '',
+      username: '',
       password: '',
     },
     validationSchema: LoginSchema,
-    onSubmit: async (values) => {
-      console.log({ values });
+    onSubmit: async (values, { setErrors }) => {
+      const result = await dispatch(loginThunk(values));
+      if (result.type === 'account/login/rejected') setErrors(formatAPIErrors(loginErrors));
     },
   });
 
@@ -38,12 +42,11 @@ export const LoginForm = () => {
       <FormikProvider value={formik}>
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <InputText
-            type="email"
-            label="Email address"
-            placeholder="Email address"
-            {...getFieldProps('email')}
-            error={Boolean(touched.email && errors.email)}
-            helperText={touched.email && errors.email}
+            label="Username"
+            placeholder="Username"
+            {...getFieldProps('username')}
+            error={Boolean(touched.username && errors.username)}
+            helperText={touched.username && errors.username}
           />
 
           <InputText

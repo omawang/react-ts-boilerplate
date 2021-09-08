@@ -20,6 +20,8 @@ module.exports = {
     alias: {
       '@Theme': path.resolve(__dirname, './src/Theme'),
       '@Router': path.resolve(__dirname, './src/Router'),
+      '@API': path.resolve(__dirname, './src/API'),
+      '@Functions': path.resolve(__dirname, './src/Functions'),
       '@Redux': path.resolve(__dirname, './src/Redux'),
       '@Pages': path.resolve(__dirname, './src/Pages'),
       '@Components': path.resolve(__dirname, './src/Components'),

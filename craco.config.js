@@ -6,6 +6,7 @@ const {
   throwUnexpectedConfigError,
 } = require('@craco/craco');
 const path = require('path');
+const CracoAlias = require('craco-alias');
 
 const throwError = (message) =>
   throwUnexpectedConfigError({
@@ -16,21 +17,29 @@ const throwError = (message) =>
   });
 
 module.exports = {
-  webpack: {
-    alias: {
-      '@Theme': path.resolve(__dirname, './src/Theme'),
-      '@Router': path.resolve(__dirname, './src/Router'),
-      '@API': path.resolve(__dirname, './src/API'),
-      '@Functions': path.resolve(__dirname, './src/Functions'),
-      '@Redux': path.resolve(__dirname, './src/Redux'),
-      '@Pages': path.resolve(__dirname, './src/Pages'),
-      '@Components': path.resolve(__dirname, './src/Components'),
+  plugins: [
+    {
+      plugin: CracoAlias,
+      options: {
+        source: 'tsconfig',
+        baseUrl: '.',
+        tsConfigPath: './tsconfig.paths.json',
+      },
     },
+  ],
+  webpack: {
+    // alias: {
+    //   '@Theme': path.resolve(__dirname, './src/Theme'),
+    //   '@Assets': path.resolve(__dirname, './src/Assets'),
+    //   '@Router': path.resolve(__dirname, './src/Router'),
+    //   '@API': path.resolve(__dirname, './src/API'),
+    //   '@Functions': path.resolve(__dirname, './src/Functions'),
+    //   '@Redux': path.resolve(__dirname, './src/Redux'),
+    //   '@Pages': path.resolve(__dirname, './src/Pages'),
+    //   '@Components': path.resolve(__dirname, './src/Components'),
+    // },
     configure: (webpackConfig, { paths }) => {
-      const { hasFoundAny, matches } = getLoaders(
-        webpackConfig,
-        loaderByName('babel-loader')
-      );
+      const { hasFoundAny, matches } = getLoaders(webpackConfig, loaderByName('babel-loader'));
       if (!hasFoundAny) throwError('failed to find babel-loader');
 
       console.log('removing babel-loader');
@@ -39,8 +48,7 @@ module.exports = {
         loaderByName('babel-loader')
       );
       if (!hasRemovedAny) throwError('no babel-loader to remove');
-      if (removedCount !== 2)
-        throwError('had expected to remove 2 babel loader instances');
+      if (removedCount !== 2) throwError('had expected to remove 2 babel loader instances');
 
       console.log('adding ts-loader');
 
@@ -65,8 +73,7 @@ module.exports = {
         loaderByName('ts-loader'),
         matches[1].loader // babel-loader
       );
-      if (!babelLoaderIsAdded)
-        throwError('failed to add back babel-loader for non-application JS');
+      if (!babelLoaderIsAdded) throwError('failed to add back babel-loader for non-application JS');
       console.log('added non-application JS babel-loader back');
 
       return webpackConfig;

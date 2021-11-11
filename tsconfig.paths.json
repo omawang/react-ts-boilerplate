@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "*": ["./*"],
       "@Theme": ["./src/Theme/index.ts"],
-      "@Router": ["./src/Router/index.ts"],
+      "@Assets/*": ["./src/Assets/*"],
+      "@Routes": ["./src/Routes/index.ts"],
       "@API": ["./src/API/index.ts"],
       "@Functions": ["./src/Functions/index.ts"],
       "@Redux": ["./src/Redux/index.ts"],

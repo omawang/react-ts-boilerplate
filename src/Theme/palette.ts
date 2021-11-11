@@ -1,99 +1,55 @@
-import { alpha } from '@material-ui/core/styles';
-import { PaletteOptions } from '@material-ui/core/styles/createPalette';
+import { PaletteOptions } from '@mui/material/styles';
 
-// SETUP COLORS
-const GREY = {
-  0: '#FFFFFF',
-  100: '#F9FAFB',
-  200: '#F4F6F8',
-  300: '#DFE3E8',
-  400: '#C4CDD5',
-  500: '#919EAB',
-  600: '#637381',
-  700: '#454F5B',
-  800: '#212B36',
-  900: '#161C24',
-  500_8: alpha('#919EAB', 0.08),
-  500_12: alpha('#919EAB', 0.12),
-  500_16: alpha('#919EAB', 0.16),
-  500_24: alpha('#919EAB', 0.24),
-  500_32: alpha('#919EAB', 0.32),
-  500_48: alpha('#919EAB', 0.48),
-  500_56: alpha('#919EAB', 0.56),
-  500_80: alpha('#919EAB', 0.8),
-};
-
-const PRIMARY = {
-  lighter: '#C8FACD',
-  light: '#5BE584',
-  main: '#00AB55',
-  dark: '#007B55',
-  darker: '#005249',
-  contrastText: '#fff',
-};
-const SECONDARY = {
-  lighter: '#D6E4FF',
-  light: '#84A9FF',
-  main: '#3366FF',
-  dark: '#1939B7',
-  darker: '#091A7A',
-  contrastText: '#fff',
-};
-const INFO = {
-  lighter: '#D0F2FF',
-  light: '#74CAFF',
-  main: '#1890FF',
-  dark: '#0C53B7',
-  darker: '#04297A',
-  contrastText: '#fff',
-};
-const SUCCESS = {
-  lighter: '#E9FCD4',
-  light: '#AAF27F',
-  main: '#54D62C',
-  dark: '#229A16',
-  darker: '#08660D',
-  contrastText: GREY[800],
-};
-const WARNING = {
-  lighter: '#FFF7CD',
-  light: '#FFE16A',
-  main: '#FFC107',
-  dark: '#B78103',
-  darker: '#7A4F01',
-  contrastText: GREY[800],
-};
-const ERROR = {
-  lighter: '#FFE7D9',
-  light: '#FFA48D',
-  main: '#FF4842',
-  dark: '#B72136',
-  darker: '#7A0C2E',
-  contrastText: '#fff',
-};
-
-const palette: PaletteOptions = {
-  common: { black: '#000', white: '#fff' },
-  primary: { ...PRIMARY },
-  secondary: { ...SECONDARY },
-  info: { ...INFO },
-  success: { ...SUCCESS },
-  warning: { ...WARNING },
-  error: { ...ERROR },
-  grey: GREY,
-  divider: GREY[500_24],
-  text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
-  background: { paper: '#fff', default: '#fff' },
-  action: {
-    active: GREY[600],
-    hover: GREY[500_8],
-    selected: GREY[500_16],
-    disabled: GREY[500_80],
-    disabledBackground: GREY[500_24],
-    focus: GREY[500_24],
-    hoverOpacity: 0.08,
-    disabledOpacity: 0.48,
-  },
-};
-
-export default palette;
+export default function themePalette(theme: any): PaletteOptions {
+  return {
+    common: {
+      black: theme.colors?.darkPaper,
+    },
+    primary: {
+      light: theme.colors?.primaryLight,
+      main: theme.colors?.primaryMain,
+      dark: theme.colors?.primaryDark,
+      200: theme.colors?.primary200,
+      800: theme.colors?.primary800,
+    },
+    secondary: {
+      light: theme.colors?.secondaryLight,
+      main: theme.colors?.secondaryMain,
+      dark: theme.colors?.secondaryDark,
+      200: theme.colors?.secondary200,
+      800: theme.colors?.secondary800,
+    },
+    error: {
+      light: theme.colors?.errorLight,
+      main: theme.colors?.errorMain,
+      dark: theme.colors?.errorDark,
+    },
+    warning: {
+      light: theme.colors?.warningLight,
+      main: theme.colors?.warningMain,
+      dark: theme.colors?.warningDark,
+    },
+    success: {
+      light: theme.colors?.successLight,
+      200: theme.colors?.success200,
+      main: theme.colors?.successMain,
+      dark: theme.colors?.successDark,
+    },
+    grey: {
+      50: theme.colors?.grey50,
+      100: theme.colors?.grey100,
+      500: theme.darkTextSecondary,
+      600: theme.heading,
+      700: theme.darkTextPrimary,
+      900: theme.textDark,
+    },
+    text: {
+      primary: theme.darkTextPrimary,
+      secondary: theme.darkTextSecondary,
+    },
+    background: {
+      paper: theme.paper,
+      default: theme.backgroundDefault,
+    },
+  };
+}

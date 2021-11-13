@@ -49,11 +49,11 @@ export const Sidebar = ({ drawerOpen, drawerToggle }: SidebarProps) => {
         sx={{
           '& .MuiDrawer-paper': {
             width: UiConstant.drawerWidth,
-            background: theme.palette.background.default,
+            background: theme.palette.background.paper,
             color: theme.palette.text.primary,
             borderRight: 'none',
             [theme.breakpoints.up('md')]: {
-              top: '88px',
+              top: '80px',
             },
           },
         }}

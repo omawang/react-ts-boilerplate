@@ -49,7 +49,7 @@ export default function themePalette(theme: any): PaletteOptions {
     },
     background: {
       paper: theme.paper,
-      default: theme.backgroundDefault,
+      default: theme.background,
     },
   };
 }

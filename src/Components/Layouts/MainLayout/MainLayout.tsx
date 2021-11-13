@@ -10,7 +10,7 @@ import { IconChevronRight } from '@tabler/icons';
 import { UiConstant } from '@Constants';
 import { SidebarContext } from '@Contexts';
 // import Header from './Header';
-import { Sidebar } from './Components';
+import { Header, Sidebar } from './Components';
 // import Customization from '../Customization';
 // import navigation from 'menu-items';
 // import { UiConstant.drawerWidth } from 'store/constant';
@@ -94,13 +94,12 @@ export const MainLayout = () => {
         color="inherit"
         elevation={0}
         sx={{
-          bgcolor: theme.palette.background.default,
+          bgcolor: 'background.paper',
           transition: leftDrawerOpened ? theme.transitions.create('width') : 'none',
         }}
       >
         <Toolbar>
-          aa
-          {/* <Header handleLeftDrawerToggle={handleLeftDrawerToggle} /> */}
+          <Header handleLeftDrawerToggle={toggleLeftDrawer} />
         </Toolbar>
       </AppBar>
 

@@ -3,14 +3,9 @@ import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Box, Drawer, useMediaQuery } from '@mui/material';
 
-// third-party
-
 // project imports
 import { UiConstant } from '@Constants';
 import { MenuList } from './Components';
-// import MenuList from './MenuList';
-// import LogoSection from '../LogoSection';
-// import MenuCard from './MenuCard';
 
 export type SidebarProps = {
   drawerOpen: boolean;
@@ -31,7 +26,6 @@ export const Sidebar = ({ drawerOpen, drawerToggle }: SidebarProps) => {
       </Box>
       <Box sx={{ px: 2 }}>
         <MenuList />
-        {/* <MenuCard /> */}
       </Box>
     </>
   );

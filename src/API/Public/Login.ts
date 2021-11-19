@@ -17,7 +17,7 @@ export async function loginAPI(data: LoginDataArgs) {
     const response = await API.post('/office/login', body);
 
     return response;
-  } catch (err) {
+  } catch (err: any) {
     throw err.response.data;
   }
 }
@@ -31,7 +31,7 @@ export async function fetchProfileAPI(token: string) {
     });
 
     return response;
-  } catch (err) {
+  } catch (err: any) {
     throw err.response.data;
   }
 }

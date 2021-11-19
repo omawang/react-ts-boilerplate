@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useMemo, useState } from 'react';
 
 type SidebarContextType = {
   leftDrawerOpened: boolean;
@@ -22,9 +22,7 @@ export const SidebarProvider = ({ children }: { children: ReactNode }) => {
 
   const toggleLeftDrawer = () => setLeftDrawerOpened(!leftDrawerOpened);
 
-  return (
-    <SidebarContext.Provider value={{ leftDrawerOpened, setLeftDrawerOpened, toggleLeftDrawer, isOpen, setIsOpen }}>
-      {children}
-    </SidebarContext.Provider>
-  );
+  const value = useMemo(() => ({ leftDrawerOpened, setLeftDrawerOpened, toggleLeftDrawer, isOpen, setIsOpen }), []);
+
+  return <SidebarContext.Provider value={value}>{children}</SidebarContext.Provider>;
 };

@@ -1,20 +1,14 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import { AppBar, Box, CssBaseline, Theme, Toolbar, useMediaQuery } from '@mui/material';
-import { IconChevronRight } from '@tabler/icons';
 
 // project imports
 import { UiConstant } from '@Constants';
 import { SidebarContext } from '@Contexts';
-// import Header from './Header';
 import { Header, Sidebar } from './Components';
-// import Customization from '../Customization';
-// import navigation from 'menu-items';
-// import { UiConstant.drawerWidth } from 'store/constant';
-// import { SET_MENU } from 'store/actions';
 
 // assets
 
@@ -94,7 +88,7 @@ export const MainLayout = () => {
         color="inherit"
         elevation={0}
         sx={{
-          bgcolor: 'background.paper',
+          bgcolor: theme.palette.background.paper,
           transition: leftDrawerOpened ? theme.transitions.create('width') : 'none',
         }}
       >

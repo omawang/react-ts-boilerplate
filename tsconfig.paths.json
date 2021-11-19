@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "*": ["./*"],
       "@Constants": ["./src/Constants/index.ts"],
       "@Theme": ["./src/Theme/index.ts"],
       "@Assets/*": ["./src/Assets/*"],
@@ -11,8 +12,7 @@
       "@Functions": ["./src/Functions/index.ts"],
       "@Redux": ["./src/Redux/index.ts"],
       "@Pages": ["./src/Pages/index.ts"],
-      "@Components": ["./src/Components/index.ts"],
-      "*": ["./*"]
+      "@Components": ["./src/Components/index.ts"]
     }
   }
 }

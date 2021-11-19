@@ -1,7 +1,5 @@
 import dashboard from './dashboard';
-// import pages from './pages';
-// import utilities from './utilities';
-// import other from './other';
+import master from './master';
 
 // ==============================|| MENU ITEMS ||============================== //
 
@@ -13,12 +11,12 @@ export type MenuItemType = {
   url?: string;
   icon?: any;
   breadcrumbs?: boolean;
-  target?: string;
+  target?: boolean;
   external?: boolean;
   disabled?: boolean;
   children?: MenuItemType[];
 };
 
 export const MenuItems: { items: MenuItemType[] } = {
-  items: [dashboard],
+  items: [dashboard, master],
 };

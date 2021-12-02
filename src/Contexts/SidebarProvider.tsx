@@ -22,7 +22,7 @@ export const SidebarProvider = ({ children }: { children: ReactNode }) => {
 
   const toggleLeftDrawer = () => setLeftDrawerOpened(!leftDrawerOpened);
 
-  const value = useMemo(() => ({ leftDrawerOpened, setLeftDrawerOpened, toggleLeftDrawer, isOpen, setIsOpen }), []);
+  const value = useMemo(() => ({ leftDrawerOpened, setLeftDrawerOpened, toggleLeftDrawer, isOpen, setIsOpen }), [leftDrawerOpened, isOpen]);
 
   return <SidebarContext.Provider value={value}>{children}</SidebarContext.Provider>;
 };

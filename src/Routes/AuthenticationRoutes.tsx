@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Navigate, RouteObject } from 'react-router';
+import { Navigate, RouteObject } from 'react-router-dom';
 
 import { Loadable, MinimalLayout } from '@Components';
 
@@ -12,12 +12,12 @@ const AuthenticationRoutes: RouteObject = {
   element: <MinimalLayout />,
   children: [
     {
-      path: '/login',
-      element: <AuthLoginPage />,
+      index: true,
+      element: <Navigate to="/login" />,
     },
     {
-      path: '/',
-      element: <Navigate to="/login" />,
+      path: '/login',
+      element: <AuthLoginPage />,
     },
   ],
 };

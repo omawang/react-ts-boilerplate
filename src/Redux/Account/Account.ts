@@ -8,25 +8,19 @@ const accountSlice = createSlice({
   reducers: {
     // forceLogin: just for demo
     forceLogin: (state, _) => {
-      state.authToken = 'blabla';
-      state.id = '008994111129';
-      state.name = 'Kurniawan';
-      state.phone = '628994111129';
-      state.messageState = 'success';
-      state.message = 'Successfully Logged In!';
+      state.authToken = 'xxx';
+      state.profile = {
+        id: '008994111129',
+        name: 'Kurniawan',
+        phone: '628994111129',
+      };
     },
     setAuthToken: (state, action) => {
       state.authToken = action.payload;
     },
     logout: (state, _) => {
       state.authToken = null;
-      state.id = '';
-      state.username = '';
-      state.email = '';
-      state.name = '';
-      state.phone = '';
-      state.messageState = 'success';
-      state.message = 'Successfully Logged Out!';
+      state.profile = null;
     },
   },
   extraReducers,

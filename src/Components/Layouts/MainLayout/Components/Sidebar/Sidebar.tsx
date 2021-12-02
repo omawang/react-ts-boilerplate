@@ -30,12 +30,9 @@ export const Sidebar = ({ drawerOpen, drawerToggle }: SidebarProps) => {
     </>
   );
 
-  const container = window !== undefined ? () => window.document.body : undefined;
-
   return (
     <Box component="nav" sx={{ flexShrink: { md: 0 }, width: matchUpMd ? UiConstant.drawerWidth : 'auto' }} aria-label="mailbox folders">
       <Drawer
-        container={container}
         variant={matchUpMd ? 'persistent' : 'temporary'}
         anchor="left"
         open={drawerOpen}

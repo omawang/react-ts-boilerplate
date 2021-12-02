@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { RouteObject } from 'react-router';
+import { RouteObject } from 'react-router-dom';
 
 import { Loadable, MainLayout } from '@Components';
 import RequireAuth from './RequireAuth';
@@ -10,7 +10,6 @@ const MainAnggotaPrelistPage = Loadable(lazy(() => import('@Pages').then(({ Angg
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
 const MainRoutes: RouteObject = {
-  path: '/',
   element: (
     <RequireAuth>
       <MainLayout />

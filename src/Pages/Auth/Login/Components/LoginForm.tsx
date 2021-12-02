@@ -1,45 +1,55 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // material-ui
 import { Box, Button, IconButton, InputAdornment, Stack, Typography } from '@mui/material';
 
 // third party
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 
 // assets
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { InputText } from '@Components';
+import { loginAPI } from '@API';
+import { formatAPIErrors } from '@Functions';
+import { useAppDispatch, useAppSelector, fetchProfileThunk, setAuthToken } from '@Redux';
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
+  const { authToken, profile } = useAppSelector((state) => state.account);
+  const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   const { values, handleChange, handleBlur, errors, handleSubmit, touched, isSubmitting } = useFormik({
     initialValues: {
-      username: 'info@codedthemes.com',
-      password: '123456',
+      username: '',
+      password: '',
     },
     validationSchema: Yup.object().shape({
       username: Yup.string().max(255).required('Username is required'),
       password: Yup.string().max(255).required('Password is required'),
     }),
-    onSubmit: async (data, { setErrors, setStatus, setSubmitting }) => {
+    onSubmit: async (data, { setErrors }) => {
       try {
-        // if (scriptedRef.current) {
-        //     setStatus({ success: true });
-        //     setSubmitting(false);
-        // }
-      } catch (err) {
-        console.error(err);
-        // if (scriptedRef.current) {
-        //     setStatus({ success: false });
-        //     setErrors({ submit: err.message });
-        //     setSubmitting(false);
-        // }
+        const result = await loginAPI(data);
+        localStorage.setItem('token', result.data.data.accessToken);
+        localStorage.setItem('refreshToken', result.data.data.refreshToken);
+        dispatch(setAuthToken(result.data.data.accessToken));
+        await dispatch(fetchProfileThunk(result.data.data.accessToken));
+      } catch (err: any) {
+        if (err?.errors?.content) {
+          const errs = formatAPIErrors(err?.errors?.content);
+          setErrors(errs);
+        }
       }
     },
   });
+
+  useEffect(() => {
+    if (authToken && profile) navigate('/dashboard', { replace: true });
+  }, [authToken, profile]);
 
   return (
     <Box>
